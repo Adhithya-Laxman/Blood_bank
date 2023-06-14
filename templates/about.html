@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Connect</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/v4-shims.css">
+<link rel="stylesheet" href="https://www.bloodconnect.org/css/bootstrap.min.css">
+</head>
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="/"><img src="{{url_for('static',filename='logo.png')}}" alt="Blood Connect"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times-circle" onclick="hideMenu()"></i>                <ul>
+                    <li><a href="/">Home</a> </li>
+                    <li><a href="/about">About us</a> </li>
+                    <li><a href="/login">Login</a> </li>
+                    <li><a href="/contact">Contact</a> </li>
+                    
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>        
+        </nav>
+        <h1>About Us</h1>
+        
+    </section>
+
+    <section class="about-us">
+        <div class="row">
+            <div class="about-col">
+                <h2>Connecting Donors and Seekers</h2>
+                <p>Blood Connect is an advanced blood bank management software designed to streamline and optimize the operations of 
+                    blood banks. <br> With its intuitive interface and powerful features, Blood Connect enables blood banks to efficiently manage their inventory, 
+                    track blood donations, and facilitate seamless communication between donors, recipients, and medical professionals. Our software automates 
+                    key processes such as donor registration, blood screening, inventory management, and blood transfusion requests, 
+                    ensuring accuracy, efficiency, and compliance with regulatory standards. <br> By leveraging cutting-edge technology, Blood Connect empowers 
+                    blood banks to save lives by effectively matching blood donors with recipients and providing real-time access to critical blood supply 
+                    information.</p>
+                <a href="/" class="hero-btn red-btn">Explore Now</a>
+            </div>
+            <div class="about-col">
+                <img src="https://pbs.twimg.com/media/FsogtDnaUAADARf.jpg" alt="">
+            </div>
+        </div>
+
+    </section>
+
+    <section class="footer">
+        <h4>
+            About us
+        </h4>
+        <p>
+            Blood Connect aims at connecting donors and seekers.
+        This project aids in the process of transmitting blood units from blood banks to the required hospitals and records the patient and donor history. </p>
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-linkedin"></i>
+
+        </div>
+        
+    </section>
+    
+    <!-- JS For Toggle menu -->
+    <script>
+        var navLinks = document.getElementById("navLinks")
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Connect</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/v4-shims.css">
+<link rel="stylesheet" href="https://www.bloodconnect.org/css/bootstrap.min.css">
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="/"><img src="{{url_for('static',filename='logo.png')}}" alt="Blood Connect"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times-circle" onclick="hideMenu()"></i>                <ul>
+                    <li><a href="/">Home</a> </li>
+                    <li><a href="/about">About us</a> </li>
+                    <li><a href="/login">Login</a> </li>
+                    <li><a href="/contact">Contact</a> </li>
+                    
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>        
+        </nav>
+        <div class="text-box">
+            <h1>Blood Connect</h1>
+            <p>Connecting Donors and Seekers for life-saving blood donations. <br>Join Blood Connect today and make a difference in someone's life. 
+                Together, we can save lives</p>
+            <a href="/login" class="hero-btn">Get Started</a>
+        </div>
+
+    </section>
+
+
+    <!-- Types of Blood Donation -->
+    <section class="compatible_donor">
+        <h1>Types of Blood Donation</h1>
+        <p>Discover how donating blood can save lives and contribute to the well-being of others, 
+            <br> while also benefiting your own health through improved circulation and the potential for reduced risk of certain health conditions</p>
+        <div class="row">
+            <div class="type-of-don">
+                <h3>Whole Blood</h3>
+                <p> The most common type where a pint 
+                    of blood is collected, including red cells, 
+                    plasma, and platelets.
+                </p>
+            </div>
+            <div class="type-of-don">
+                <h3>Plasma Donation</h3>
+                <p>
+                    Only the plasma component is collected, which is used 
+                    in the treatment of burn victims, patients with clotting disorders, and 
+                    certain autoimmune diseases.
+                </p>
+            </div>
+            <div class="type-of-don">
+                <h3>Platelet Donation</h3>
+                <p>
+                    Platelets are collected through a process called apheresis 
+                    and used in the treatment of cancer patients, organ transplant recipients, 
+                    and individuals with blood disorders.
+                </p>
+            </div>
+        </div>
+
+    </section>
+    <section class="compatible_donor">
+        <h1>Compatible Blood Donors</h1>
+        <p>Discover the Compatibility of Blood Groups. <br>
+        Find out which blood types can donate to and receive from each other in the table below.</p>
+
+        <div class="compatible_donor">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th colspan="3" style="color:white;">Compatible Blood Type Donors</th>
+                </tr>
+                <tr>
+                    <td><b>Blood Type</b></td>
+                    <td><b>Donate Blood To</b></td>
+                    <td><b>Receive Blood From</b></td>
+                </tr>
+                <tr>
+                    <td><span style="color: #961e1b;"><b>A+</b></span></td>
+                    <td>A+ AB+</td>
+                    <td>A+ A- O+ O-</td>
+                </tr>
+                <tr>
+                    <td><span style="color: #961e1b;"><b>O+</b></span></td>
+                    <td>O+ A+ B+ AB+</td>
+                    <td>O+ O-</td>
+                </tr>
+                <tr>
+                    <td><span style="color: #961e1b;"><b>B+</b></span></td>
+                    <td>B+ AB+</td>
+                    <td>B+ B- O+ O-</td>
+                </tr>
+                <tr>
+                    <td><span style="color: #961e1b;"><b>AB+</b></span></td>
+                    <td>AB+</td>
+                    <td>Everyone</td>
+                </tr>
+                <tr>
+                    <td><span style="color: #961e1b;"><b>A-</b></span></td>
+                    <td>A+ A- AB+ AB-</td>
+                    <td>A- O-</td>
+                </tr>
+                <tr>
+                    <td><span style="color: #961e1b;"><b>O-</b></span></td>
+                    <td>Everyone</td>
+                    <td>O-</td>
+                </tr>
+                <tr>
+                    <td><span style="color: #961e1b;"><b>B-</b></span></td>
+                    <td>B+ B- AB+ AB-</td>
+                    <td>B- O-</td>
+                </tr>
+                <tr>
+                    <td><span style="color: #961e1b;"><b>AB-</b></span></td>
+                    <td>AB+ AB-</td>
+                    <td>AB- A- B- O-</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    
+
+        </div>
+        
+    </section>
+    <section class= "testomonials">
+        <div class="container-fluid h-60-min d-flex align-items-center justify-content-center py-5" >
+            <div class="container">
+                <div class="mx-auto">
+                    <h2 class="f-40 fw-6 text-center color-white mb-0 " style="color: #fff;">Our Impact</h2>
+                </div>
+                <div class="row">
+                    <div class="type-of-don" style="text-align: center;">
+                        <h6>10500 +</h6>
+                        <p class="color-white fw-4 f-18">Blood units collected</p>
+                    </div>
+                    <div class="type-of-don" style="text-align: center;">
+                        <h6>38000 +</h6>          
+                        <p class="color-white fw-6 f-30">Lives Saved</p>
+                    </div>
+                    <div class="type-of-don" style="text-align: center;">
+                        <h6>1446 +</h6>
+                    <p class="color-white fw-4 f-18">Camps organized across India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="cta">
+            <h1>Donate Now and Save Lives</h1>
+            <a href="/login" class="hero-btn">Donate Now</a>
+    
+        </section>
+    </section>
+    
+    <section class="footer">
+        <h4>
+            About us
+        </h4>
+        <p>
+            Blood Bank management system aims at connecting donors and seekers.
+        This project aids in the process of transmitting blood units from blood banks to the required hospitals and records the patient and donor history. </p>
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-linkedin"></i>
+
+        </div>
+        
+    </section>
+    
+    <!-- JS For Toggle menu -->
+    <script>
+        var navLinks = document.getElementById("navLinks")
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+    </script>
+</body>
+</html>
