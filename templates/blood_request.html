@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request For Blood</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css')}}">
+
+
+    
+</head>
+<body>
+    <h1 class="logo">
+        <a href="/">Blood Bank</a> 
+    </h1>
+    <div class="sub_heading">
+        <h1>Blood Stock Availability</h1>
+    </div>
+
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About Us</a></li>
+            </li>
+            <li class="dropdown">
+                <a href="#">Donate Blood</a>
+                <div class="dropdown-content">
+                    <a href="/blood_search">Blood necessity</a>
+                    <a href="/blood_camps">Blood Camps Search</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="/login">Login</a>
+            </li>
+        </ul>
+    </div>
+    
+</body>
+</html>

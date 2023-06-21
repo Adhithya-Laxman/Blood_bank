@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Stock Availability</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/v4-shims.css">
+<link rel="stylesheet" href="https://www.bloodconnect.org/css/bootstrap.min.css">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static',filename='apple-touch-icon.png')}}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static',filename='favicon-32x32.png')}}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static',filename='favicon-16x16.png')}}">
+<link rel="manifest" href="{{ url_for('static',filename='site.webmanifest')}}">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+
+        
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #8e0000;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #8e0000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ce7a7a;
+        }
+
+        .stock-list {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .stock-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="/{{username}}/dashboard"><img src="{{url_for('static',filename='logo.png')}}" alt="Blood Connect"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times-circle" onclick="hideMenu()"></i>                <ul>
+                    <li><a href="/{{username}}/dashboard">Home</a> </li>
+                    <li><a href="/{{username}}/about">About us</a> </li>
+                    <li><a href="/{{username}}/blood_search">Search For Blood</a> </li>
+                    <li><a href="/{{username}}/donate">Donate Blood</a> </li>
+                    <li><a href="/logout">Logout</a> </li>
+
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>        
+        </nav>
+        <h1 style="color: #ffffff;">Blood Bank Directory</h1>
+        
+    </section>
+    <section class="blood-search" style="margin-bottom: 0px;">
+        <h1 style="font-size: 30px; ">Blood Stock Availability</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="blood-group">Search by Blood Group:</label>
+                <select id="blood-group" name="blood-group" required>
+                    <option value="">Select Blood Group</option>
+                    <option value=1>A+</option>
+                    <option value=4>A-</option>
+                    <option value=3>B+</option>
+                    <option value=5>B-</option>
+                    <option value=6>AB+</option>
+                    <option value=7>AB-</option>
+                    <option value=8>O+</option>
+                    <option value=9>O-</option>
+                </select>
+            </div>
+            <button type="submit" class="hero-btn red-btn">Search</button>
+        </form>
+    </section>
+        <!-- {% if stock %}
+            <div class="stock-list">
+                <h2>Stock Availability for Blood Group: {{ stock[0].Blood.bgroup }}</h2>
+                <ul>
+                    {% for item in stock %}
+                        <li class="stock-item">{{ item.Inventory.hospital.name }} - Donors: {{ item.Blood.donors | length }}, Locations: {{ item.Inventory.stock }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %} -->
+    <section class="compatible_donor" >
+        {% if stock %}
+    <div class="compatible_donor">
+        <h2>Stock Availability for Blood Group: {{ stock[0].Blood.bgroup }}</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Hospital</th>
+                    <th>City</th>
+                    <th>Stock</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in stock %}
+                    <tr>
+                        <td>{{ item.Inventory.hospital.hname }}</td>
+                        <td>{{ item.Inventory.hospital.loc }}</td>
+                        <td>{{ item.Inventory.stock }}</td>
+                        <td>
+                            <form action="/{{ username }}/blood_search/{{item.Inventory.hospital.hid }}/{{ item.Inventory.bid }}" method="GET,POST">
+                                <input type="hidden" name="hid" value="{{ item.Inventory.hospital.hid }}">
+                                <input type="hidden" name="bid" value="{{ item.Inventory.bid }}">
+                                <input type="hidden" name="username" value="{{ username }}">
+                                <button type="submit" class="hero-btn red-btn">Get Blood</button>
+                            </form>
+                            
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}
+
+
+    </section>
+    
+    <section class="footer">
+        <h4>
+            About us
+        </h4>
+        <p>
+            Blood Connect aims at connecting donors and seekers.
+        This project aids in the process of transmitting blood units from blood banks to the required hospitals and records the patient and donor history. </p>
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-linkedin"></i>
+
+        </div>
+        
+    </section>
+    
+    <!-- JS For Toggle menu -->
+    <script>
+        var navLinks = document.getElementById("navLinks")
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+    </script>
+</body>
+</html>

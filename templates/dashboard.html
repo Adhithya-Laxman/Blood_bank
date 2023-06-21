@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}"><link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/v4-shims.css">
+<link rel="stylesheet" href="https://www.bloodconnect.org/css/bootstrap.min.css">
+
+<link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static',filename='apple-touch-icon.png')}}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static',filename='favicon-32x32.png')}}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static',filename='favicon-16x16.png')}}">
+<link rel="manifest" href="{{ url_for('static',filename='site.webmanifest')}}">
+
+</head>
+
+<body>
+    
+    <section class="sub-header">
+        <nav>
+            <a href="/{{username}}/dashboard"><img src="{{url_for('static',filename='logo.png')}}" alt="Blood Connect"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times-circle" onclick="hideMenu()"></i>                <ul>
+                    <li><a href="/{{username}}/dashboard">Home</a> </li>
+                    <li><a href="/{{username}}/about">About us</a> </li>
+                    <li><a href="/{{username}}/blood_search">Search For Blood</a> </li>
+                    <li><a href="/{{username}}/donate">Donate Blood</a> </li>
+                    <li><a href="/logout">Logout</a> </li>
+
+                    
+                    
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>        
+        </nav>
+        <h1 >{{username}}'s Dashboard</h1>
+        
+    </section>
+
+
+    <section class="dashboard-content">
+        <section class="compatible_donor">
+            {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+            <h1>Welcome! {{username}}</h1>
+            <p>Discover your present blood donation status, blood request status and <br>search for the required blood groups.</p>
+            <div class="row">
+                <div class="type-of-don">
+                    <h3>Blood Donation Status</h3>
+                    {% if donated_blood %}
+                        <p>You have donated blood type: {{ donated_blood.type }} on {{ donated_blood.date }} at {{ donated_blood.location }}</p>
+                    {% else %}
+                        <p>You can view your donations here</p>
+                    {% endif %}
+                    <a href="/{{username}}/donate" class="hero-btn red-btn">Donate Now</a>
+                    <a href="/{{username}}/your_donations" class="hero-btn red-btn" style="margin-top: 10px;">Your Donations</a>
+
+                </div>
+                <div class="type-of-don">
+                    <h3> Blood Request Status </h3>
+                    {% if requested_blood %}
+                        <p>You have requested blood type: {{ requested_blood.type }} on {{ requested_blood.date }} in {{ requested_blood.location }}</p>
+                    {% else %}
+                        <p>You can view your requests here.</p>
+                    {% endif %}
+                    <a href="/{{username}}/blood_search" class="hero-btn red-btn">Search Blood</a>
+                    <a href="/{{username}}/your_requests" class="hero-btn red-btn" style="margin-top: 10px;">Your Blood Requests History</a>
+
+                </div>
+            </div>
+        
+    </section>
+   
+    <section class="footer">
+        <h4>
+            About us
+        </h4>
+        <p>
+            Blood Connect aims at connecting donors and seekers.
+        This project aids in the process of transmitting blood units from blood banks to the required hospitals and records the patient and donor history. </p>
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-linkedin"></i>
+
+        </div>
+        
+    </section>
+    
+    <!-- JS For Toggle menu -->
+    <script>
+        var navLinks = document.getElementById("navLinks")
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+    </script>
+</body>
+
+</html>
