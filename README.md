@@ -6,8 +6,8 @@ Blood Connect is a robust blood bank management system developed using Flask for
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/BloodConnect.git
-   cd BloodConnect
+   git clone https://github.com/Adhithya-Laxman/Blood_bank.git
+   cd Blood_bank
    ```
 
 2. **Install Dependencies:**
